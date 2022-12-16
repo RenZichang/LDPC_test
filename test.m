@@ -21,8 +21,8 @@ for iter_test = 1:test_times
         % 产生比特、编码、调制加噪、软比特译码
         tx_bits = randi([0, 1], 1, K);
         tx_code = [tx_bits, mod(tx_bits * Gp, 2)];
-        rx_llrs = (1 - 2 * tx_code) + ...
-            randn(size(tx_code)) * noise_powers(iter_snr);
+        rx_llrs = 2 * snr_lins(iter_snr) * ((1 - 2 * tx_code) + ...
+            randn(size(tx_code)) * noise_powers(iter_snr));
         rx_code = softDecode(rx_llrs, H);
         rx_bits = rx_code(1:K);
         % 更新误符号率
