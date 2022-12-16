@@ -3,7 +3,7 @@ function dc = softDecode(c, H)
 %   暂无
 
 % 初始化
-[N_K, N] = size(H);
+N_K = size(H, 1);
 edge_inds = find(H);
 L_V2F = zeros(size(H)).';
 L_F2V = zeros(size(H));
